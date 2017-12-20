@@ -24,6 +24,7 @@
 		693D30E61FCE4580003F97D1 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 693D30E51FCE4580003F97D1 /* Shader.vsh */; };
 		693D30E81FCE45CC003F97D1 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 693D30E71FCE45CC003F97D1 /* Shader.fsh */; };
 		69C062711FE9F2DD00ABBEEF /* timg.gif in Resources */ = {isa = PBXBuildFile; fileRef = 69C062701FE9F2DD00ABBEEF /* timg.gif */; };
+		69C064ED1FEA60E200ABBEEF /* AGLKTextureInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C064EC1FEA60E200ABBEEF /* AGLKTextureInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,8 @@
 		693D30E51FCE4580003F97D1 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		693D30E71FCE45CC003F97D1 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		69C062701FE9F2DD00ABBEEF /* timg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = timg.gif; sourceTree = "<group>"; };
+		69C064EB1FEA60E200ABBEEF /* AGLKTextureInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGLKTextureInfo.h; sourceTree = "<group>"; };
+		69C064EC1FEA60E200ABBEEF /* AGLKTextureInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGLKTextureInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,15 +80,17 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
-		693035241FE90A7500DA6E3F /* CustomContext */ = {
+		693035241FE90A7500DA6E3F /* Custom */ = {
 			isa = PBXGroup;
 			children = (
 				693035251FE90AA300DA6E3F /* AGLKContext.h */,
 				693035261FE90AA300DA6E3F /* AGLKContext.m */,
 				6930352B1FE90E3700DA6E3F /* AGLKVertexAttribArrayBuffer.h */,
 				6930352C1FE90E3700DA6E3F /* AGLKVertexAttribArrayBuffer.m */,
+				69C064EB1FEA60E200ABBEEF /* AGLKTextureInfo.h */,
+				69C064EC1FEA60E200ABBEEF /* AGLKTextureInfo.m */,
 			);
-			path = CustomContext;
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		693035281FE90AEE00DA6E3F /* Frameworks */ = {
@@ -118,7 +123,7 @@
 			children = (
 				69C062701FE9F2DD00ABBEEF /* timg.gif */,
 				693035311FE9221900DA6E3F /* test.png */,
-				693035241FE90A7500DA6E3F /* CustomContext */,
+				693035241FE90A7500DA6E3F /* Custom */,
 				693035201FE8F38400DA6E3F /* CustomView */,
 				693D30DF1FCE433E003F97D1 /* One-Triangle */,
 				693D30C91FCE4309003F97D1 /* AppDelegate.h */,
@@ -226,6 +231,7 @@
 			files = (
 				693D30CE1FCE4309003F97D1 /* ViewController.m in Sources */,
 				693D30D91FCE4309003F97D1 /* main.m in Sources */,
+				69C064ED1FEA60E200ABBEEF /* AGLKTextureInfo.m in Sources */,
 				693D30E21FCE43DE003F97D1 /* TriangleVC.m in Sources */,
 				6930352D1FE90E3700DA6E3F /* AGLKVertexAttribArrayBuffer.m in Sources */,
 				693D30CB1FCE4309003F97D1 /* AppDelegate.m in Sources */,
