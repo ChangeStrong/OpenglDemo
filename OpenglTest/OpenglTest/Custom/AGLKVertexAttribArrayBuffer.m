@@ -27,8 +27,10 @@
                     usage:(GLenum)usage
 {
     NSParameterAssert(0 < astride);
-    NSParameterAssert(0 < count);
-    NSParameterAssert(NULL != dataPtr);
+    NSAssert((0 < count && NULL != dataPtr) ||
+             (0 == count && NULL == dataPtr),
+             @"data must not be NULL or count > 0");
+//    NSParameterAssert(NULL != dataPtr);
     
     if (nil != (self = [super init])) {
         stride = astride;
@@ -41,6 +43,28 @@
     return self;
     
 }
+
+- (void)reinitWithAttribStride:(GLsizeiptr)aStride
+              numberOfVertices:(GLsizei)count
+                         bytes:(const GLvoid *)dataPtr;
+{
+    NSParameterAssert(0 < aStride);
+    NSParameterAssert(0 < count);
+    NSParameterAssert(NULL != dataPtr);
+    NSAssert(0 != glName, @"Invalid name");
+    
+    self.stride = aStride;
+    self.bufferSizeBytes = aStride * count;
+    
+    glBindBuffer(GL_ARRAY_BUFFER,  // STEP 2
+                 self.glName);
+    glBufferData(                  // STEP 3
+                 GL_ARRAY_BUFFER,  // Initialize buffer contents
+                 bufferSizeBytes,  // Number of bytes to copy
+                 dataPtr,          // Address of bytes to copy
+                 GL_DYNAMIC_DRAW);
+}
+
 -(void)prepareToDrawWithAttrib:(GLuint)index
          numberOfCoordinates:(GLint)count
                 attribOffset:(GLsizeiptr)offset
@@ -63,7 +87,7 @@
         startVertexIndex:(GLint)first
         numberOfVertices:(GLsizei)count
 {
-    NSAssert(self.bufferSizeBytes >= (first + count)*self.stride, @"Attempt to draw more vertex data than available.");
+    NSAssert(self.bufferSizeBytes >= ((first + count)*self.stride), @"Attempt to draw more vertex data than available.");
     glDrawArrays(model, first, count);
 }
 

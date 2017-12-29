@@ -51,4 +51,9 @@
 -(void)drawArrayWithMode:(GLenum)model
         startVertexIndex:(GLint)first
         numberOfVertices:(GLsizei)count;
+
+//重新绑定顶点数据到缓存
+- (void)reinitWithAttribStride:(GLsizeiptr)stride
+              numberOfVertices:(GLsizei)count
+                         bytes:(const GLvoid *)dataPtr;
 @end

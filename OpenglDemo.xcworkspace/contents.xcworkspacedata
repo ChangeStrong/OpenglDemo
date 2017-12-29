@@ -4,4 +4,7 @@
    <FileRef
       location = "group:OpenglTest/OpenglTest.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Light/Light.xcodeproj">
+   </FileRef>
 </Workspace>

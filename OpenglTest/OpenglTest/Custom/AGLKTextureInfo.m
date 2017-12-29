@@ -7,10 +7,6 @@
 //
 
 #import "AGLKTextureInfo.h"
-
-
-
-
 @implementation AGLKTextureInfo
 
 @end
