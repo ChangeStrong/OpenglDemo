@@ -16,7 +16,7 @@
 }
 //使用此对象后台会自动生成Shanding Language
 @property(nonatomic, strong) GLKBaseEffect *baseeffect;
-//用户控制法向量绘制时的颜色
+//用户控制法向量绘制时的颜色和旋转方向
 @property(nonatomic, strong) GLKBaseEffect *extraffect;
 
 @property(nonatomic, strong) AGLKVertexAttribArrayBuffer *vertexBuffer;
@@ -76,7 +76,9 @@
     //发射光的颜色
     self.baseeffect.light0.diffuseColor = GLKVector4Make(0.7f, 0.7f, 0.7f, 1.0f);
     //光源位置
-    self.baseeffect.light0.position = GLKVector4Make(1.0f, 1.0f, 0.5f, 0.0f);
+    self.baseeffect.light0.position = GLKVector4Make(1.0f, 1.0f, 0.5f
+                                                     ,0.0f//表平行光
+                                                     );
     
     self.extraffect = [[GLKBaseEffect alloc]init];
     self.extraffect.useConstantColor = GL_TRUE;
@@ -88,6 +90,7 @@
     //z轴逆时针旋转30度
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix,GLKMathDegreesToRadians(-30.0f), 0.0f, 0.0f, 1.0f);
     modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, 0.0f, 0.0f, 0.25f);
+    //改变视点
     self.baseeffect.transform.modelviewMatrix = modelViewMatrix;
     self.extraffect.transform.modelviewMatrix = modelViewMatrix;
     
@@ -102,7 +105,7 @@
     triangles[7] = SceneTriangleMake(vertexH, vertexF, vertexI);
     
     self.vertexBuffer = [[AGLKVertexAttribArrayBuffer alloc]initWithAttribStride:sizeof(triangles) numberOfVertices:sizeof(triangles)/sizeof(SceneVertex) data:triangles usage:GL_DYNAMIC_DRAW];
-    
+    //留在后面动态初始化
     self.extraBuffer = [[AGLKVertexAttribArrayBuffer alloc]initWithAttribStride:sizeof(SceneVertex) numberOfVertices:0 data:NULL usage:GL_DYNAMIC_DRAW];
     
     self.centerVertexHeight = 0.0f;
@@ -132,6 +135,7 @@
     
 }
 
+#pragma mark 其它
 //绘制法向量
 -(void)drawNormals
 {
@@ -187,16 +191,32 @@
      bytes:triangles];
 }
 
+#pragma mark 点击事件
+//设置顶点的z坐标
+- (IBAction)takeCenterVertexHeightFrom:(UISlider *)sender {
+    //改变三角锥顶点位置
+    self.centerVertexHeight = sender.value;
+    
+ /*   //测试 改变视点
+    static int i = 1;
+    CGFloat angle ;
+    angle = sender.value*360;
+    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(angle), 1.0f, 0.0f, 0.0f);
+    //z轴逆时针旋转30度
+//    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix,GLKMathDegreesToRadians(-30.0f), 0.0f, 0.0f, 1.0f);
+//    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, 0.0f, 0.0f, 0.25f);
+    //改变视点
+    self.baseeffect.transform.modelviewMatrix = modelViewMatrix;
+  [self.baseEffect prepareToDraw];
+    i++;
+//    end*/
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//设置顶点的z坐标
-- (IBAction)takeCenterVertexHeightFrom:(UISlider *)sender {
-    self.centerVertexHeight = sender.value;
-}
-
-
 
 /*
 #pragma mark - Navigation

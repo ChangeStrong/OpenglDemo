@@ -73,14 +73,24 @@
     NSParameterAssert((0 < count) && (count < 4));
     NSParameterAssert(0 < self.stride);
     NSAssert(0 != glName, @"Invalid glName");
-    
+    //注意此步骤不能少
+    glBindBuffer(GL_ARRAY_BUFFER,     // STEP 2
+                 self.glName);
     if (shouldEnable) {
         //使缓存的顶点生效
         glEnableVertexAttribArray(index);
     }
     
     glVertexAttribPointer(index, count, GL_FLOAT, GL_FALSE, (GLsizei)self.stride, NULL + offset);
-    
+#ifdef DEBUG
+    {  // Report any errors
+        GLenum error = glGetError();
+        if(GL_NO_ERROR != error)
+        {
+            NSLog(@"GL Error: 0x%x", error);
+        }
+    }
+#endif
 }
 
 -(void)drawArrayWithMode:(GLenum)model
@@ -91,6 +101,17 @@
     glDrawArrays(model, first, count);
 }
 
+/////////////////////////////////////////////////////////////////
+// Submits the drawing command identified by mode and instructs
+// OpenGL ES to use count vertices from previously prepared
+// buffers starting from the vertex at index first in the
+// prepared buffers
++ (void)drawPreparedArraysWithMode:(GLenum)mode
+                  startVertexIndex:(GLint)first
+                  numberOfVertices:(GLsizei)count;
+{
+    glDrawArrays(mode, first, count); // Step 6
+}
 -(void)dealloc
 {
     if (0 != glName) {

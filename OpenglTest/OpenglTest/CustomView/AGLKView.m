@@ -97,7 +97,7 @@
 -(void)display
 {
     [EAGLContext setCurrentContext:self.context];
-    //设置视口使用的大小 (控制渲染帧缓存的子集 此处为渲染整个帧缓存)
+    //设置视口使用的大小(即当前view的可视大小) (控制渲染帧缓存的子集 此处为渲染整个帧缓存)
     glViewport(0, 0, (GLsizei)self.drawableWidth, (GLsizei)self.drawableHeight);
     [self drawRect:[self bounds]];
     //将buff渲染到layer上

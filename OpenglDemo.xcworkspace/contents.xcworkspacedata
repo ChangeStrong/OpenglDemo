@@ -7,4 +7,7 @@
    <FileRef
       location = "group:Light/Light.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Earth/Earth.xcodeproj">
+   </FileRef>
 </Workspace>
