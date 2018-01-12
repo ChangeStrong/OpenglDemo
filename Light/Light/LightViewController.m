@@ -67,9 +67,6 @@
                                                               0.0f,//green
                                                               0.0f,//blue
                                                               1.0f);
-    
-    
-    
     //设置灯光颜色和发射位置
     self.baseeffect = [[GLKBaseEffect alloc]init];
     self.baseeffect.light0.enabled = GL_TRUE;
@@ -91,8 +88,13 @@
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix,GLKMathDegreesToRadians(-30.0f), 0.0f, 0.0f, 1.0f);
     modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, 0.0f, 0.0f, 0.25f);
     //改变视点
-    self.baseeffect.transform.modelviewMatrix = modelViewMatrix;
+//    self.baseeffect.transform.modelviewMatrix = modelViewMatrix;
+    //改变观看法向量的视点
     self.extraffect.transform.modelviewMatrix = modelViewMatrix;
+    //眼睛的位置最好大于物体的最高点
+    self.baseeffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0.0, -0.2, 0.7,//眼睛的位置(右边偏上)
+                                                                     0.0, 0.5, 0.0,//看向的位置(锥体的正中心)
+                                                                     0.0, 1.0, 0.0);//头朝向Y轴正方向
     
     //绘制底部8个三角形
     triangles[0] = SceneTriangleMake(vertexA, vertexB, vertexD);
