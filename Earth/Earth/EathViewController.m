@@ -179,24 +179,27 @@ static const GLfloat  SceneEarthAxialTiltDeg = 23.5f;
     GLKMatrix4MakeTranslation(0.0f, 0.0f, -5.0);
 }
 
-//太阳光
+//看见物体的亮度由---漫反射光+环境光
 - (void)configureLight
 {
     self.baseEffect.light0.enabled = GL_TRUE;
+    //漫反射光(由太阳决定)
     self.baseEffect.light0.diffuseColor = GLKVector4Make(
                                                          1.0f, // Red
                                                          1.0f, // Green
                                                          1.0f, // Blue
                                                          1.0f);// Alpha
+    //太阳照射的位置
     self.baseEffect.light0.position = GLKVector4Make(
                                                      1.0f,
                                                      0.0f,
                                                      0.8f,
                                                      0.0f);
+    //环境光
     self.baseEffect.light0.ambientColor = GLKVector4Make(
-                                                         0.2f, // Red
-                                                         0.2f, // Green
-                                                         0.2f, // Blue
+                                                         1.0f, // Red
+                                                         1.0f, // Green
+                                                         0.5f, // Blue
                                                          1.0f);// Alpha
 }
 
@@ -219,5 +222,83 @@ static const GLfloat  SceneEarthAxialTiltDeg = 23.5f;
     // Pass the selected object to the new view controller.
 }
 */
+
+
+//*****************使用代码编写球体顶点坐标
+//生成球体模型坐标
+
+#define sPerVertex  360
+float cylinder[sPerVertex * sPerVertex] = {0};
+- (void)genData {
+    int index = 0;
+    
+    double perRadius = 2 * M_PI / (float)sPerVertex;// glmPi
+    float R = 1.0f;
+    for (int a = 0; a < sPerVertex; a++) {
+        for (int b = 0; b < sPerVertex; b++) {
+            float x1 = R*(float)(sin(a * perRadius / 2) * cos(b* perRadius));
+            float z1 = R*(float)(sin(a * perRadius / 2) * sin(b* perRadius));
+            float y1 = R*(float) cos(a * perRadius / 2);
+            
+            float x2 = R*(float)(sin((a + 1) * perRadius / 2) * cos(b * perRadius));
+            float z2 = R*(float)(sin((a + 1) * perRadius / 2) * sin(b * perRadius));
+            float y2 = R*(float)cos((a + 1) * perRadius / 2);
+            
+            float x3 = R*(float)(sin((a + 1) * perRadius / 2) * cos((b + 1) * perRadius));
+            float z3 = R*(float)(sin((a + 1) * perRadius / 2) * sin((b + 1) * perRadius));
+            float y3 = R*(float)cos((a + 1) * perRadius / 2);
+            
+            float x4 = R*(float)(sin(a * perRadius / 2) * cos((b + 1) * perRadius));
+            float z4 = R*(float)(sin(a * perRadius / 2) * sin((b + 1) * perRadius));
+            float y4 = R*(float)cos(a * perRadius / 2);
+            
+            cylinder[index++] = x1; cylinder[index++] = y1; cylinder[index++] = z1;
+            cylinder[index++] = x2; cylinder[index++] = y2; cylinder[index++] = z2;
+            cylinder[index++] = x3; cylinder[index++] = y3; cylinder[index++] = z3;
+            
+            cylinder[index++] = x3; cylinder[index++] = y3; cylinder[index++] = z3;
+            cylinder[index++] = x4; cylinder[index++] = y4; cylinder[index++] = z4;
+            cylinder[index++] = x1; cylinder[index++] = y1; cylinder[index++] = z1;
+            
+        }
+    }
+}
+
+//计算对应的纹理坐标
+float cylinder_texcoord[sPerVertex * sPerVertex] = {0};
+-(void)getTexVertex
+{
+    //计算模型坐标的同时计算纹理坐标：
+    int index_texcoord = 0;
+    double perW = 1 / (float) sPerVertex;
+    double perH = 1 / (float) (sPerVertex);
+    for (int a = 0; a < sPerVertex; a++) {//H
+        for (int b = 0; b < sPerVertex; b++) {//W
+            float w1 = (float) (a * perH);
+            float h1 = (float) (b * perW);
+            float w2 = (float) ((a + 1) * perH);
+            float h2 = (float) (b * perW);
+            float w3 = (float) ((a + 1) * perH);
+            float h3 = (float) ((b + 1) * perW);
+            float w4 = (float) (a * perH);
+            float h4 = (float) ((b + 1) * perW);
+            cylinder_texcoord[index_texcoord++] = h1;
+            cylinder_texcoord[index_texcoord++] = w1;
+            cylinder_texcoord[index_texcoord++] = h2;
+            cylinder_texcoord[index_texcoord++] = w2;
+            cylinder_texcoord[index_texcoord++] = h3;
+            cylinder_texcoord[index_texcoord++] = w3;
+            cylinder_texcoord[index_texcoord++] = h3;
+            cylinder_texcoord[index_texcoord++] = w3;
+            cylinder_texcoord[index_texcoord++] = h4;
+            cylinder_texcoord[index_texcoord++] = w4;
+            cylinder_texcoord[index_texcoord++] = h1;
+            cylinder_texcoord[index_texcoord++] = w1;
+        }
+    }
+    
+}
+
+
 
 @end

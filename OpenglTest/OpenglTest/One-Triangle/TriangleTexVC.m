@@ -16,11 +16,19 @@ typedef struct {
     GLKVector3 positioncoords;
     GLKVector2 textureCoords;
 }SceneVertex;
-
+//实验证明iOS的纹理坐标跟view的坐标一样 左上是原点(0,0)
 static const SceneVertex vertices[] = {
-    {{-0.5,-0.5,0.0},{0.0f,0.0f}},
-    {{0.5f,-0.5f,0.0},{1.0f,0.0f}},
-    {{-0.5f,0.5f,0.0},{0.0f,1.0f}},
+    //下三角
+    {{-0.5,-0.5,0.0},{0.0f,1.0f}},
+    {{0.5f,-0.5f,0.0},{1.0f,1.0f}},
+    {{-0.5f,0.5f,0.0},{0.0f,0.0f}},
+    
+    //正方形则添加上面的三角形
+      {{0.5f,0.5f,0.0},{1.0f,0.0f}},
+    {{0.5f,-0.5f,0.0},{1.0f,1.0f}},
+    {{-0.5f,0.5f,0.0},{0.0f,0.0f}},
+  
+    
 };
 
 @interface TriangleTexVC ()
@@ -53,14 +61,22 @@ static const SceneVertex vertices[] = {
                                                               0.0f,//green
                                                               0.0f,//blue
                                                               1.0f);
+    NSLog(@"vertes=%lu",sizeof(vertices)/sizeof(SceneVertex));
     //生成顶点缓存
     self.vertexBuffer = [[AGLKVertexAttribArrayBuffer alloc]initWithAttribStride:sizeof(SceneVertex) numberOfVertices:sizeof(vertices)/sizeof(SceneVertex) data:vertices usage:GL_STATIC_DRAW];
     
     //设置纹理
-    CGImageRef imageRef = [UIImage imageNamed:@"timg.gif"].CGImage;
+    CGImageRef imageRef = [UIImage imageNamed:@"test.png"].CGImage;
     GLKTextureInfo *textureInfo = [GLKTextureLoader textureWithCGImage:imageRef options:nil error:NULL];
     self.baseeffect.texture2d0.name = textureInfo.name;
     self.baseeffect.texture2d0.target = textureInfo.target;
+    
+//    self.baseeffect.transform.modelviewMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(180.0f), 0.0, 0.0, 1.0);
+    
+    //右侧看
+//    self.baseeffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0.2, -0.2, 0.2,//眼睛的位置(右边偏上)
+//                                                                     0.0, 0.0, 0.0,//看向的位置(锥体的正中心)
+//                                                                     0.0, 1.0, 0.0);//头朝向Y轴正方向(标配)
     
 }
 
@@ -79,7 +95,7 @@ static const SceneVertex vertices[] = {
     //配置纹理和使纹理生效
     [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribTexCoord0 numberOfCoordinates:2 attribOffset:offsetof(SceneVertex, textureCoords) shouldEnable:YES];
     
-    [self.vertexBuffer drawArrayWithMode:GL_TRIANGLES startVertexIndex:0 numberOfVertices:3];
+    [self.vertexBuffer drawArrayWithMode:GL_TRIANGLES startVertexIndex:0 numberOfVertices:sizeof(vertices)/sizeof(SceneVertex)];
 }
 
 /*

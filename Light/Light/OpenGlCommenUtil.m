@@ -26,7 +26,7 @@ SceneTriangle SceneTriangleMake(SceneVertex vertexA,SceneVertex vertexB,SceneVer
 GLKVector3 SceneTriangleFaceNormal(
                                    const SceneTriangle triangle)
 {
-    //通过顶点1和顶点0决定一个向量
+    //通过顶点1向量与顶点0向量相减
     GLKVector3 vectorA = GLKVector3Subtract(
                                             triangle.vertices[1].position,
                                             triangle.vertices[0].position);

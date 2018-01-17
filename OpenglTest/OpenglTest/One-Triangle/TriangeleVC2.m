@@ -23,6 +23,7 @@ static const SceneVertex vertices[] = {
     {{-0.5,-0.5,0.0}},
     {{0.5f,-0.5f,0.0}},
     {{-0.5f,0.5f,0.0}},
+   
 };
 @implementation TriangeleVC2{
     GLuint vertexBufferId;

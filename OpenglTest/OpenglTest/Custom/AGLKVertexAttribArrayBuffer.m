@@ -36,7 +36,7 @@
         stride = astride;
         bufferSizeBytes = stride *count;
         glGenBuffers(1, &glName);
-        glBindBuffer(GL_ARRAY_BUFFER, self.glName);
+        glBindBuffer(GL_ARRAY_BUFFER, self.glName);//GL_ARRAY_BUFFER(顶点数组) GL_ELEMENT_ARRAY_BUFFER(表示顶点索引数组)
         glBufferData(GL_ARRAY_BUFFER, bufferSizeBytes, dataPtr, usage);
         NSAssert(0 != glName, @"Failed to generate glName");
     }
@@ -64,7 +64,7 @@
                  dataPtr,          // Address of bytes to copy
                  GL_DYNAMIC_DRAW);
 }
-
+//准备绘制缓存的数据 index表示绘制的是顶点还是纹理等
 -(void)prepareToDrawWithAttrib:(GLuint)index
          numberOfCoordinates:(GLint)count
                 attribOffset:(GLsizeiptr)offset
@@ -77,10 +77,10 @@
     glBindBuffer(GL_ARRAY_BUFFER,     // STEP 2
                  self.glName);
     if (shouldEnable) {
-        //使缓存的顶点生效
+        //准备绘制index类型的顶点
         glEnableVertexAttribArray(index);
     }
-    
+    //设置绘制的类型、几坐标顶点、步幅、什么位置开始绘制
     glVertexAttribPointer(index, count, GL_FLOAT, GL_FALSE, (GLsizei)self.stride, NULL + offset);
 #ifdef DEBUG
     {  // Report any errors
@@ -98,6 +98,7 @@
         numberOfVertices:(GLsizei)count
 {
     NSAssert(self.bufferSizeBytes >= ((first + count)*self.stride), @"Attempt to draw more vertex data than available.");
+    //设置图元类型、第几个点绘制、顶点数
     glDrawArrays(model, first, count);
 }
 
