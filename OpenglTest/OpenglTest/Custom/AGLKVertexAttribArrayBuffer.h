@@ -19,6 +19,8 @@
 }
 //顶点标识
 @property(nonatomic, assign) GLuint glName;
+//顶点索引标识
+@property(nonatomic, assign) GLuint indexName;
 //顶点buff大小
 @property(nonatomic, readonly) GLsizeiptr bufferSizeBytes;
  //步幅
@@ -59,4 +61,7 @@
 - (void)reinitWithAttribStride:(GLsizeiptr)stride
               numberOfVertices:(GLsizei)count
                          bytes:(const GLvoid *)dataPtr;
+//配置顶点索引
+-(void)configerVerticIndexsBufferSize:(GLsizeiptr)size
+                                bytes:(const GLvoid *)dataPtr;
 @end

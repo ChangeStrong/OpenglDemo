@@ -43,6 +43,17 @@
     return self;
     
 }
+//配置顶点索引
+-(void)configerVerticIndexsBufferSize:(GLsizeiptr)size
+                                bytes:(const GLvoid *)dataPtr
+{
+    NSParameterAssert(0 < size);
+    glGenBuffers(1, &_indexName);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, self.indexName);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, dataPtr, GL_STATIC_DRAW);
+    NSAssert(0 != _indexName, @"Failed to generate _indexName");
+}
+
 
 - (void)reinitWithAttribStride:(GLsizeiptr)aStride
               numberOfVertices:(GLsizei)count
@@ -64,6 +75,9 @@
                  dataPtr,          // Address of bytes to copy
                  GL_DYNAMIC_DRAW);
 }
+
+//配置顶点索引
+
 //准备绘制缓存的数据 index表示绘制的是顶点还是纹理等
 -(void)prepareToDrawWithAttrib:(GLuint)index
          numberOfCoordinates:(GLint)count

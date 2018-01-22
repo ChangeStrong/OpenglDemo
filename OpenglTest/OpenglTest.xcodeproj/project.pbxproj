@@ -14,6 +14,8 @@
 		6930352D1FE90E3700DA6E3F /* AGLKVertexAttribArrayBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6930352C1FE90E3700DA6E3F /* AGLKVertexAttribArrayBuffer.m */; };
 		693035301FE91BBF00DA6E3F /* TriangleTexVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6930352F1FE91BBF00DA6E3F /* TriangleTexVC.m */; };
 		693035321FE9221900DA6E3F /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 693035311FE9221900DA6E3F /* test.png */; };
+		69345465201079E0009525E5 /* CubeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69345464201079E0009525E5 /* CubeVC.m */; };
+		6934546820107E13009525E5 /* CubeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6934546720107E13009525E5 /* CubeUtil.m */; };
 		693D30CB1FCE4309003F97D1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D30CA1FCE4309003F97D1 /* AppDelegate.m */; };
 		693D30CE1FCE4309003F97D1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D30CD1FCE4309003F97D1 /* ViewController.m */; };
 		693D30D11FCE4309003F97D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 693D30CF1FCE4309003F97D1 /* Main.storyboard */; };
@@ -40,6 +42,10 @@
 		6930352E1FE91BBF00DA6E3F /* TriangleTexVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TriangleTexVC.h; sourceTree = "<group>"; };
 		6930352F1FE91BBF00DA6E3F /* TriangleTexVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TriangleTexVC.m; sourceTree = "<group>"; };
 		693035311FE9221900DA6E3F /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		69345463201079E0009525E5 /* CubeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeVC.h; sourceTree = "<group>"; };
+		69345464201079E0009525E5 /* CubeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CubeVC.m; sourceTree = "<group>"; };
+		6934546620107E13009525E5 /* CubeUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeUtil.h; sourceTree = "<group>"; };
+		6934546720107E13009525E5 /* CubeUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CubeUtil.m; sourceTree = "<group>"; };
 		693D30C61FCE4309003F97D1 /* OpenglTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenglTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		693D30C91FCE4309003F97D1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		693D30CA1FCE4309003F97D1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -121,8 +127,8 @@
 		693D30C81FCE4309003F97D1 /* OpenglTest */ = {
 			isa = PBXGroup;
 			children = (
-				69C062701FE9F2DD00ABBEEF /* timg.gif */,
 				693035311FE9221900DA6E3F /* test.png */,
+				69C062701FE9F2DD00ABBEEF /* timg.gif */,
 				693035241FE90A7500DA6E3F /* Custom */,
 				693035201FE8F38400DA6E3F /* CustomView */,
 				693D30DF1FCE433E003F97D1 /* One-Triangle */,
@@ -130,6 +136,10 @@
 				693D30CA1FCE4309003F97D1 /* AppDelegate.m */,
 				693D30CC1FCE4309003F97D1 /* ViewController.h */,
 				693D30CD1FCE4309003F97D1 /* ViewController.m */,
+				69345463201079E0009525E5 /* CubeVC.h */,
+				69345464201079E0009525E5 /* CubeVC.m */,
+				6934546620107E13009525E5 /* CubeUtil.h */,
+				6934546720107E13009525E5 /* CubeUtil.m */,
 				693D30CF1FCE4309003F97D1 /* Main.storyboard */,
 				693D30D21FCE4309003F97D1 /* Assets.xcassets */,
 				693D30D41FCE4309003F97D1 /* LaunchScreen.storyboard */,
@@ -229,11 +239,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69345465201079E0009525E5 /* CubeVC.m in Sources */,
 				693D30CE1FCE4309003F97D1 /* ViewController.m in Sources */,
 				693D30D91FCE4309003F97D1 /* main.m in Sources */,
 				69C064ED1FEA60E200ABBEEF /* AGLKTextureInfo.m in Sources */,
 				693D30E21FCE43DE003F97D1 /* TriangleVC.m in Sources */,
 				6930352D1FE90E3700DA6E3F /* AGLKVertexAttribArrayBuffer.m in Sources */,
+				6934546820107E13009525E5 /* CubeUtil.m in Sources */,
 				693D30CB1FCE4309003F97D1 /* AppDelegate.m in Sources */,
 				693035271FE90AA300DA6E3F /* AGLKContext.m in Sources */,
 				693035301FE91BBF00DA6E3F /* TriangleTexVC.m in Sources */,

@@ -19,14 +19,14 @@ typedef struct {
 //实验证明iOS的纹理坐标跟view的坐标一样 左上是原点(0,0)
 static const SceneVertex vertices[] = {
     //下三角
-    {{-0.5,-0.5,0.0},{0.0f,1.0f}},
-    {{0.5f,-0.5f,0.0},{1.0f,1.0f}},
-    {{-0.5f,0.5f,0.0},{0.0f,0.0f}},
+    {{-0.5,-0.5,0.0},{0.0f,1.0f}},//A
+    {{0.5f,-0.5f,0.0},{1.0f,1.0f}},//B
+    {{-0.5f,0.5f,0.0},{0.0f,0.0f}},//C
     
     //正方形则添加上面的三角形
-      {{0.5f,0.5f,0.0},{1.0f,0.0f}},
-    {{0.5f,-0.5f,0.0},{1.0f,1.0f}},
-    {{-0.5f,0.5f,0.0},{0.0f,0.0f}},
+      {{0.5f,0.5f,0.0},{1.0f,0.0f}},//D
+    {{0.5f,-0.5f,0.0},{1.0f,1.0f}},//B
+    {{-0.5f,0.5f,0.0},{0.0f,0.0f}},//C
   
     
 };
@@ -61,6 +61,8 @@ static const SceneVertex vertices[] = {
                                                               0.0f,//green
                                                               0.0f,//blue
                                                               1.0f);
+    
+    
     NSLog(@"vertes=%lu",sizeof(vertices)/sizeof(SceneVertex));
     //生成顶点缓存
     self.vertexBuffer = [[AGLKVertexAttribArrayBuffer alloc]initWithAttribStride:sizeof(SceneVertex) numberOfVertices:sizeof(vertices)/sizeof(SceneVertex) data:vertices usage:GL_STATIC_DRAW];

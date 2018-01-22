@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--CubeVC-->
+        <scene sceneID="1fv-WN-WAn">
+            <objects>
+                <viewController id="klZ-jW-QFP" customClass="CubeVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ax5-0q-CNm" customClass="GLKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="sNE-v3-Dxv">
+                                <rect key="frame" x="38" y="53" width="299" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="eA0-H5-dnm"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="sliderAction:" destination="klZ-jW-QFP" eventType="valueChanged" id="aa2-ZE-PR4"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sNE-v3-Dxv" firstAttribute="top" secondItem="UvA-Zz-I9f" secondAttribute="top" constant="33" id="1QS-0C-QcF"/>
+                            <constraint firstItem="sNE-v3-Dxv" firstAttribute="leading" secondItem="UvA-Zz-I9f" secondAttribute="leading" constant="40" id="9HK-Td-U1T"/>
+                            <constraint firstItem="UvA-Zz-I9f" firstAttribute="trailing" secondItem="sNE-v3-Dxv" secondAttribute="trailing" constant="40" id="pzH-sH-GkU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UvA-Zz-I9f"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QvS-Zq-OKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="508" y="-651"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -32,11 +63,20 @@
                                     <segue destination="cnX-15-AwR" kind="presentation" id="6Wb-Wr-K0L"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxk-a9-96n">
+                                <rect key="frame" x="148.5" y="173" width="77" height="30"/>
+                                <state key="normal" title="立方体纹理"/>
+                                <connections>
+                                    <segue destination="klZ-jW-QFP" kind="presentation" id="i8Z-bp-sBj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zRa-pj-54F" firstAttribute="top" secondItem="vYu-9p-fcg" secondAttribute="bottom" constant="38" id="0cP-lT-noc"/>
                             <constraint firstItem="vYu-9p-fcg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="DnJ-dv-Qsh"/>
+                            <constraint firstItem="Oxk-a9-96n" firstAttribute="top" secondItem="zRa-pj-54F" secondAttribute="bottom" constant="45" id="HjA-9d-B2G"/>
+                            <constraint firstItem="Oxk-a9-96n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MQE-9d-p1u"/>
                             <constraint firstItem="vYu-9p-fcg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PtL-CB-aei"/>
                             <constraint firstItem="zRa-pj-54F" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Umh-j0-Yss"/>
                         </constraints>

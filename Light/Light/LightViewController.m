@@ -92,12 +92,12 @@
     //改变观看法向量的视点
     self.extraffect.transform.modelviewMatrix = modelViewMatrix;
     //眼睛的位置最好大于物体的最高点
-    self.baseeffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0.0, -0.2, 0.7,//眼睛的位置(右边偏上)
-                                                                     0.0, 0.5, 0.0,//看向的位置(锥体的正中心)
-                                                                     0.0, 1.0, 0.0);//头朝向Y轴正方向(标配)
+//    self.baseeffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0.0, 0.0, 1.0,//眼睛的位置(右边偏上)
+//                                                                     0.0, 0.0, 0.0,//看向的位置(锥体的正中心)
+//                                                                     0.0, 1.0, 0.0);//头朝向Y轴正方向(标配)
     
     //绘制底部8个三角形
-    triangles[0] = SceneTriangleMake(vertexA, vertexB, vertexD);
+    triangles[0] = SceneTriangleMake(vertexA, vertexB, vertexD);//vertexD
     triangles[1] = SceneTriangleMake(vertexB, vertexC, vertexF);
     triangles[2] = SceneTriangleMake(vertexD, vertexB, vertexE);
     triangles[3] = SceneTriangleMake(vertexE, vertexB, vertexF);
