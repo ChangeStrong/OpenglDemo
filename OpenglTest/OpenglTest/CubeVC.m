@@ -98,18 +98,19 @@
     self.baseeffect.constantColor = GLKVector4Make(1.0, 1.0f, 1.0f, 1.0f);
     //视域比例按手机比例
      float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
-//    GLKMatrix4 projecctionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(240.0),//透视投影上下间的夹角(视角)夹角看到的越大物体越小
-//                                                             aspect, 0.1f, 100.0f);
-//    self.baseeffect.transform.projectionMatrix = projecctionMatrix;
-    //X轴逆时针旋转60度
-    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(-0.0f), 1.0f, 0.0f, 0.0f);
-      //Y轴旋转
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(30.0f), 0.0f, 1.0f, 0.0f);
-    self.baseeffect.transform.modelviewMatrix = modelViewMatrix;
-    //眼睛的位置最好大于物体的最高点
-//    self.baseeffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0.5, -0.5, 0.2,//眼睛的位置(右边偏上)
-//                                                                         0.0, 0.0, 0.0,//看向的位置(锥体的正中心)
-//                                                                         0.0, 1.0, 0.0);//头朝向Y轴正方向(标配)
+    GLKMatrix4 projecctionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(60.0),//透视投影上下间的夹角(视角)夹角看到的越大物体越小
+                                                             aspect, 0.1f, 10.0f);
+    self.baseeffect.transform.projectionMatrix = projecctionMatrix;
+//    //X轴逆时针旋转60度
+//    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(-20.0f), 1.0f, 0.0f, 0.0f);
+//      //Y轴旋转
+//    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(30.0f), 0.0f, 1.0f, 0.0f);
+//    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, 0.6, 0.6, 0.8);
+//    self.baseeffect.transform.modelviewMatrix = modelViewMatrix;
+    //眼睛的位置最好是xyz都大于物体对应的方向的的最高点 
+    self.baseeffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0.0, -0.8, 2.8,//眼睛的位置(z轴大于物体最高点以上)
+                                                                         0.0, 0.0, 0.0,//看向的位置(锥体的正中心)
+                                                                         0.0, 1.0, 0.0);//头朝向Y轴正方向(标配)
     NSLog(@"%lu",sizeof(cubeVertices)/sizeof(SceneVertex));
     
      self.vertexBuffer = [[AGLKVertexAttribArrayBuffer alloc]initWithAttribStride:sizeof(SceneVertex) numberOfVertices:sizeof(cubeVertices)/sizeof(SceneVertex) data:cubeVertices usage:GL_STATIC_DRAW];
