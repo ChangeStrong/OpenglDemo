@@ -73,7 +73,7 @@
     glAttachShader(_program, fragShader);
     
     // 绑定着色器的属性 - 将着色器程序的属性绑定到OpenGL 中
-    glBindAttribLocation(_program, 0, "position");  // 0代表枚举位置
+    glBindAttribLocation(_program, 0, "position");  // 0代表枚举位置 既顶点位置标识保持 和glEnableVertexAttribArray填入的标识一致
     //链接着色器程序
     if (![self linkProgram:_program]) {
         NSLog(@"Failed to link program: %d", _program);

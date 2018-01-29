@@ -74,7 +74,7 @@
     self.baseeffect.light0.diffuseColor = GLKVector4Make(0.7f, 0.7f, 0.7f, 1.0f);
     //光源位置
     self.baseeffect.light0.position = GLKVector4Make(1.0f, 1.0f, 0.5f
-                                                     ,0.0f//表平行光
+                                                     ,0.0f//表平行光(距离场景无限远) 为1表示点光源 即从这个点发出的光
                                                      );
     
     self.extraffect = [[GLKBaseEffect alloc]init];

@@ -10,4 +10,7 @@
    <FileRef
       location = "group:Earth/Earth.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:LLImageView/LLImageView.xcodeproj">
+   </FileRef>
 </Workspace>
