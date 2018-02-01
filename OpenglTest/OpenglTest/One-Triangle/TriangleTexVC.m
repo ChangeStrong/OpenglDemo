@@ -16,7 +16,7 @@ typedef struct {
     GLKVector3 positioncoords;
     GLKVector2 textureCoords;
 }SceneVertex;
-//实验证明iOS的纹理坐标跟view的坐标一样 左上是原点(0,0)
+//uiimage得到的图片属于uikit坐标与coregraph以及quartz以及opengl是相反的 造成上下颠倒 左上是原点(0,0)
 static const SceneVertex vertices[] = {
     //下三角
     {{-0.5,-0.5,0.0},{0.0f,1.0f}},//A
