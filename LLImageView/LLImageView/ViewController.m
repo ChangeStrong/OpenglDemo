@@ -76,7 +76,9 @@
 
 
 #pragma mark 其它
-/**
+/*UIKit － y轴向下
+Core Graphics(Quartz) － y轴向上
+OpenGL ES － y轴向上
  *  获取图片数据的像素数据RGBA
  *
  *  @param image 图片
@@ -98,6 +100,7 @@
     //将uikit中的图片颠倒 方法二
 //    CGContextTranslateCTM(imageContextRef, 0, imageHeight);
 //    CGContextScaleCTM(imageContextRef, 1.0, -1.0);
+    
     CGContextDrawImage(imageContextRef, CGRectMake(0.0, 0.0, (CGFloat)imageWidth, (CGFloat)imageHeight), imageRef);
     CGContextRelease(imageContextRef);
     

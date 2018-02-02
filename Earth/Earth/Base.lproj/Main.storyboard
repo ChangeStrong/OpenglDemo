@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Eath View Controller-->
+        <!--BananaVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="EathViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="BananaVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="GLKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,15 +42,25 @@
                                     <action selector="ySliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="eeK-F2-leX"/>
                                 </connections>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bg2-xD-aPh">
+                                <rect key="frame" x="26" y="584" width="62" height="30"/>
+                                <state key="normal" title="地球贴图"/>
+                                <connections>
+                                    <segue destination="b48-Pa-H0r" kind="presentation" id="Ss8-io-NBb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HXI-fu-ze3" secondAttribute="trailing" constant="50" id="2D8-v9-atZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bg2-xD-aPh" secondAttribute="bottom" constant="53" id="39O-G6-qEY"/>
                             <constraint firstItem="HXI-fu-ze3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="13" id="Cte-hU-aNM"/>
                             <constraint firstItem="xyk-QO-zlf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HoO-wg-Csj"/>
                             <constraint firstItem="c2x-xd-7Wq" firstAttribute="height" secondItem="HXI-fu-ze3" secondAttribute="height" id="NGl-aV-c4a"/>
                             <constraint firstItem="xyk-QO-zlf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ndg-uN-Zre"/>
                             <constraint firstItem="HXI-fu-ze3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="Uz5-Xr-5tB"/>
+                            <constraint firstItem="bg2-xD-aPh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="WZ7-dl-LXo"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bg2-xD-aPh" secondAttribute="trailing" constant="20" symbolic="YES" id="gRe-zd-TbC"/>
                             <constraint firstItem="c2x-xd-7Wq" firstAttribute="leading" secondItem="HXI-fu-ze3" secondAttribute="leading" id="hTx-Wv-o9n"/>
                             <constraint firstItem="2cA-4G-dOv" firstAttribute="top" secondItem="HXI-fu-ze3" secondAttribute="bottom" constant="38" id="oNQ-fF-MFd"/>
                             <constraint firstItem="c2x-xd-7Wq" firstAttribute="width" secondItem="HXI-fu-ze3" secondAttribute="width" id="pJT-JS-DZJ"/>
@@ -63,6 +73,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--EathVC-->
+        <scene sceneID="C4C-DW-kWz">
+            <objects>
+                <viewController storyboardIdentifier="EathVC" id="b48-Pa-H0r" customClass="EathVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DOM-cA-1eu" customClass="GLKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Xd7-mo-yIu">
+                                <rect key="frame" x="38" y="34" width="299" height="31"/>
+                                <connections>
+                                    <action selector="sliderAction:" destination="b48-Pa-H0r" eventType="valueChanged" id="Czr-ei-z5q"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xd7-mo-yIu" firstAttribute="top" secondItem="9Rv-59-ayi" secondAttribute="top" constant="14" id="6LN-Nf-M5a"/>
+                            <constraint firstItem="9Rv-59-ayi" firstAttribute="trailing" secondItem="Xd7-mo-yIu" secondAttribute="trailing" constant="40" id="AOe-91-dGR"/>
+                            <constraint firstItem="Xd7-mo-yIu" firstAttribute="leading" secondItem="9Rv-59-ayi" secondAttribute="leading" constant="40" id="zu5-Ux-F2g"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9Rv-59-ayi"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U74-fV-6rh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="804" y="46"/>
         </scene>
     </scenes>
 </document>

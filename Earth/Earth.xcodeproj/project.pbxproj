@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		692D2406202404D400E1E75B /* EathVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 692D2405202404D400E1E75B /* EathVC.m */; };
+		692D240920240EE900E1E75B /* BananaVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 692D240820240EE900E1E75B /* BananaVC.m */; };
 		69A4E8FF1FFC7B89001F2425 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A4E8FE1FFC7B89001F2425 /* AppDelegate.m */; };
 		69A4E9051FFC7B89001F2425 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69A4E9031FFC7B89001F2425 /* Main.storyboard */; };
 		69A4E9071FFC7B89001F2425 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69A4E9061FFC7B89001F2425 /* Assets.xcassets */; };
 		69A4E90A1FFC7B89001F2425 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69A4E9081FFC7B89001F2425 /* LaunchScreen.storyboard */; };
 		69A4E90D1FFC7B89001F2425 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A4E90C1FFC7B89001F2425 /* main.m */; };
-		69A4E9151FFC7BC9001F2425 /* EathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A4E9141FFC7BC9001F2425 /* EathViewController.m */; };
 		69A4E9191FFC7CAC001F2425 /* banana.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69A4E9181FFC7CAC001F2425 /* banana.jpg */; };
 		69A4E91F1FFC7D1F001F2425 /* AGLKContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A4E91E1FFC7D1F001F2425 /* AGLKContext.m */; };
 		69A4E9221FFC8853001F2425 /* Earth512x256.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69A4E9211FFC8853001F2425 /* Earth512x256.jpg */; };
@@ -20,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		692D2404202404D400E1E75B /* EathVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EathVC.h; sourceTree = "<group>"; };
+		692D2405202404D400E1E75B /* EathVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EathVC.m; sourceTree = "<group>"; };
+		692D240720240EE900E1E75B /* BananaVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BananaVC.h; sourceTree = "<group>"; };
+		692D240820240EE900E1E75B /* BananaVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BananaVC.m; sourceTree = "<group>"; };
 		69A4E8FA1FFC7B89001F2425 /* Earth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69A4E8FD1FFC7B89001F2425 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		69A4E8FE1FFC7B89001F2425 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -28,8 +33,6 @@
 		69A4E9091FFC7B89001F2425 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		69A4E90B1FFC7B89001F2425 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69A4E90C1FFC7B89001F2425 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		69A4E9131FFC7BC9001F2425 /* EathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EathViewController.h; sourceTree = "<group>"; };
-		69A4E9141FFC7BC9001F2425 /* EathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EathViewController.m; sourceTree = "<group>"; };
 		69A4E9171FFC7CA2001F2425 /* banana.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = banana.h; path = ../../obj2openglTool/banana.h; sourceTree = "<group>"; };
 		69A4E9181FFC7CAC001F2425 /* banana.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = banana.jpg; path = ../../obj2openglTool/banana.jpg; sourceTree = "<group>"; };
 		69A4E91D1FFC7D1F001F2425 /* AGLKContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGLKContext.h; path = ../../OpenglTest/OpenglTest/Custom/AGLKContext.h; sourceTree = "<group>"; };
@@ -78,8 +81,10 @@
 				69A4E9171FFC7CA2001F2425 /* banana.h */,
 				69A4E91D1FFC7D1F001F2425 /* AGLKContext.h */,
 				69A4E91E1FFC7D1F001F2425 /* AGLKContext.m */,
-				69A4E9131FFC7BC9001F2425 /* EathViewController.h */,
-				69A4E9141FFC7BC9001F2425 /* EathViewController.m */,
+				692D240720240EE900E1E75B /* BananaVC.h */,
+				692D240820240EE900E1E75B /* BananaVC.m */,
+				692D2404202404D400E1E75B /* EathVC.h */,
+				692D2405202404D400E1E75B /* EathVC.m */,
 				69A4E8FD1FFC7B89001F2425 /* AppDelegate.h */,
 				69A4E8FE1FFC7B89001F2425 /* AppDelegate.m */,
 				69A4E9031FFC7B89001F2425 /* Main.storyboard */,
@@ -164,8 +169,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				692D240920240EE900E1E75B /* BananaVC.m in Sources */,
+				692D2406202404D400E1E75B /* EathVC.m in Sources */,
 				69A4E91F1FFC7D1F001F2425 /* AGLKContext.m in Sources */,
-				69A4E9151FFC7BC9001F2425 /* EathViewController.m in Sources */,
 				69A4E9281FFCA49D001F2425 /* AGLKVertexAttribArrayBuffer.m in Sources */,
 				69A4E90D1FFC7B89001F2425 /* main.m in Sources */,
 				69A4E8FF1FFC7B89001F2425 /* AppDelegate.m in Sources */,
