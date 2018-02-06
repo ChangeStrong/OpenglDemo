@@ -57,8 +57,8 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
                              error:NULL];
     
     
-//    self.baseEffect.texture2d0.name = self.earthTextureInfo.name;
-//    self.baseEffect.texture2d0.target = self.earthTextureInfo.target;
+    self.baseEffect.texture2d0.name = self.earthTextureInfo.name;
+    self.baseEffect.texture2d0.target = self.earthTextureInfo.target;
     //视点位置
     [self setVisiblePort];
     //配置太阳光
@@ -95,11 +95,11 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
 //                                       shouldEnable:YES];
 
 
-//    [self.vertexTextureCoordBuffer
-//     prepareToDrawWithAttrib:GLKVertexAttribTexCoord0
-//     numberOfCoordinates:2
-//     attribOffset:0
-//     shouldEnable:YES];
+    [self.vertexTextureCoordBuffer
+     prepareToDrawWithAttrib:GLKVertexAttribTexCoord0
+     numberOfCoordinates:2
+     attribOffset:0
+     shouldEnable:YES];
     
     //绘制顶点
     [self.baseEffect prepareToDraw];
@@ -122,7 +122,7 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
     self.baseEffect.transform.projectionMatrix = projecctionMatrix;
     
     //眼睛的位置最好是xyz都大于物体对应的方向的的最高点
-    self.baseEffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0, -4.3,-5.0,//眼睛的位置(z轴大于物体最高点以上)
+    self.baseEffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0, -4.3,-3.0,//眼睛的位置(z轴大于物体最高点以上)
                                                                      0.0, 0.0, 0.0,//看向的位置(锥体的正中心)
                                                                      0.0, 1.0, 0.0);//头朝向Y轴正方向(标配)
 
@@ -164,11 +164,11 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
     
 //    self.vertexColorBuffer = [[AGLKVertexAttribArrayBuffer alloc]initWithAttribStride:(3*sizeof(GLfloat)) numberOfVertices:sizeof(cylinder)/ (3 * sizeof(GLfloat)) data:cylinder usage:GL_STATIC_DRAW];
 
-//    self.vertexTextureCoordBuffer = [[AGLKVertexAttribArrayBuffer alloc]
-//                                     initWithAttribStride:(2 * sizeof(GLfloat))
-//                                     numberOfVertices:EathTexCoordVertexNumber/2.0//EathTexCoordVertexNumber sizeof(cylinder_texcoord) / (2 * sizeof(GLfloat))
-//                                     data:eathTexVertex
-//                                     usage:GL_STATIC_DRAW];
+    self.vertexTextureCoordBuffer = [[AGLKVertexAttribArrayBuffer alloc]
+                                     initWithAttribStride:(2 * sizeof(GLfloat))
+                                     numberOfVertices:EathTexCoordVertexNumber/2.0//EathTexCoordVertexNumber sizeof(cylinder_texcoord) / (2 * sizeof(GLfloat))
+                                     data:eathTexVertex
+                                     usage:GL_STATIC_DRAW];
     
     
     
@@ -179,11 +179,10 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
     //测试 改变视点
   CGFloat  angle = sender.value;
     //改变视点
-    self.baseEffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0.0+angle*6, angle*6, 5.8,//眼睛的位置(z轴大于物体最高点以上)
+    self.baseEffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0.0+angle*6, angle*6, 3.8,//眼睛的位置(z轴大于物体最高点以上)
                                                                      0.0, 0.0, 0.0,//看向的位置(锥体的正中心)
                                                                      0.0, 1.0, 0.0);//头朝向Y轴正方向(标配);
     [self.baseEffect prepareToDraw];
-
     //    end
 }
 
@@ -203,7 +202,7 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
             // 纵向横向各到一个角度后计算对应的此点在球面上的坐标
             float x0 = (float)(r*cos(DEGREES_TO_RADIANS(vAngle)) * sin(DEGREES_TO_RADIANS(hAngle)));
             float y0 = (float)(r*sin(DEGREES_TO_RADIANS(vAngle)));
-            float z0 = (float)(r*sin(DEGREES_TO_RADIANS(vAngle)) * cos(DEGREES_TO_RADIANS(hAngle)));
+            float z0 = (float)(r*cos(DEGREES_TO_RADIANS(vAngle)) * cos(DEGREES_TO_RADIANS(hAngle)));
 
             float x1 = (float) (r * cos(DEGREES_TO_RADIANS(vAngle)) * sin(DEGREES_TO_RADIANS(hAngle + angleSpan)));
             float y1 = (float) (r  * sin(DEGREES_TO_RADIANS(vAngle)));
@@ -226,11 +225,10 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
             cylinder[index++] = x2; cylinder[index++] = y2; cylinder[index++] = z2;
             cylinder[index++] = x3; cylinder[index++] = y3; cylinder[index++] = z3;
             
-            
+            //纹理坐标
             eathTexVertex[texIndex++] = hAngle/360.0; eathTexVertex[texIndex++] = (1 - (90-vAngle)/180.0);//0
             eathTexVertex[texIndex++] = (hAngle+angleSpan)/360.0;eathTexVertex[texIndex++] = (1 - (90-vAngle)/180.0);//1
             eathTexVertex[texIndex++] = hAngle/360.0; eathTexVertex[texIndex++] = (1 - (90-(vAngle+angleSpan))/180.0);//3
-            
             
              eathTexVertex[texIndex++] = (hAngle+angleSpan)/360.0;eathTexVertex[texIndex++] = (1 - (90-vAngle)/180.0);//1
              eathTexVertex[texIndex++] = (hAngle+angleSpan)/360.0;eathTexVertex[texIndex++] = (1 - (90-(vAngle+angleSpan))/180.0);//2
@@ -253,40 +251,7 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
  0--------1
  */
 
-//计算对应的纹理坐标
 
-//-(void)getTexVertex
-//{
-//    //计算模型坐标的同时计算纹理坐标：
-//    int index_texcoord = 0;
-//    double perW = 1 / (float) sPerVertex;
-//    double perH = 1 / (float) (sPerVertex);
-//    for (int a = 0; a < sPerVertex; a++) {//H
-//        for (int b = 0; b < sPerVertex; b++) {//W
-//            float w1 = (float) (a * perH);
-//            float h1 = (float) (b * perW);
-//            float w2 = (float) ((a + 1) * perH);
-//            float h2 = (float) (b * perW);
-//            float w3 = (float) ((a + 1) * perH);
-//            float h3 = (float) ((b + 1) * perW);
-//            float w4 = (float) (a * perH);
-//            float h4 = (float) ((b + 1) * perW);
-//            cylinder_texcoord[index_texcoord++] = h1;
-//            cylinder_texcoord[index_texcoord++] = w1;
-//            cylinder_texcoord[index_texcoord++] = h2;
-//            cylinder_texcoord[index_texcoord++] = w2;
-//            cylinder_texcoord[index_texcoord++] = h3;
-//            cylinder_texcoord[index_texcoord++] = w3;
-//            cylinder_texcoord[index_texcoord++] = h3;
-//            cylinder_texcoord[index_texcoord++] = w3;
-//            cylinder_texcoord[index_texcoord++] = h4;
-//            cylinder_texcoord[index_texcoord++] = w4;
-//            cylinder_texcoord[index_texcoord++] = h1;
-//            cylinder_texcoord[index_texcoord++] = w1;
-//        }
-//    }
-//
-//}
 
 
 - (void)didReceiveMemoryWarning {
