@@ -11,7 +11,7 @@
 #import "AGLKVertexAttribArrayBuffer.h"
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
-#define AngleSpan 10 //每次递增10度
+#define AngleSpan 2 //每次递增10度
 #define EathVertexNumber  (180/AngleSpan *(360/AngleSpan)*6*3)
 #define EathTexCoordVertexNumber (180/AngleSpan *(360/AngleSpan)*6*2)
 static float cylinder[EathVertexNumber] = {0};
@@ -22,7 +22,12 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
 @property(nonatomic, strong) AGLKVertexAttribArrayBuffer *vertexBuffer;
 @property (strong, nonatomic) AGLKVertexAttribArrayBuffer *vertexColorBuffer;
 @property (strong, nonatomic) AGLKVertexAttribArrayBuffer *vertexTextureCoordBuffer;
+
 @property (strong, nonatomic) GLKTextureInfo *earthTextureInfo;
+@property(nonatomic, strong) GLKTextureInfo *secondTextureInfo;
+@property(nonatomic, strong) GLKTextureInfo *thirdTextureInfo;
+
+@property (nonatomic) GLKMatrixStackRef modelviewMatrixStack;
 @end
 
 @implementation EathVC{
@@ -48,7 +53,7 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
     
     //地球纹理 Earth512x256 banana
     CGImageRef earthImageRef =
-    [[UIImage imageNamed:@"Earth512x256.jpg"] CGImage];
+    [[UIImage imageNamed:@"miandui.jpg"] CGImage];
     self.earthTextureInfo = [GLKTextureLoader
                              textureWithCGImage:earthImageRef
                              options:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -56,9 +61,26 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
                                       GLKTextureLoaderOriginBottomLeft, nil]
                              error:NULL];
     
+    CGImageRef secondImageRef =
+    [[UIImage imageNamed:@"1111.jpg"] CGImage];
+    self.secondTextureInfo = [GLKTextureLoader
+                              textureWithCGImage:secondImageRef
+                              options:[NSDictionary dictionaryWithObjectsAndKeys:
+                                       [NSNumber numberWithBool:YES],
+                                       GLKTextureLoaderOriginBottomLeft, nil]
+                              error:NULL];
     
-    self.baseEffect.texture2d0.name = self.earthTextureInfo.name;
-    self.baseEffect.texture2d0.target = self.earthTextureInfo.target;
+    CGImageRef thirdImageRef =
+    [[UIImage imageNamed:@"susu.jpg"] CGImage];
+    self.thirdTextureInfo = [GLKTextureLoader
+                              textureWithCGImage:thirdImageRef
+                              options:[NSDictionary dictionaryWithObjectsAndKeys:
+                                       [NSNumber numberWithBool:YES],
+                                       GLKTextureLoaderOriginBottomLeft, nil]
+                              error:NULL];
+    
+    
+   
     //视点位置
     [self setVisiblePort];
     //配置太阳光
@@ -73,7 +95,6 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
 {
     //    //开启深度测试
     glEnable(GL_DEPTH_TEST);
-    //    glDepthFunc(GL_LESS);
     //设置当前片元的深度值最大深度值、并清理颜色
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -101,20 +122,138 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
      attribOffset:0
      shouldEnable:YES];
     
+    [self drawBallOne];
+//    [self drawBallSecond];
+//    [self drawBallThird];
+    
+}
+
+-(void)drawBallOne
+{
+    self.baseEffect.texture2d0.name = self.earthTextureInfo.name;
+    self.baseEffect.texture2d0.target = self.earthTextureInfo.target;
+    
+    static  GLfloat  eathRotationDegree = 20.0f;
+    
+    GLKMatrixStackPush(self.modelviewMatrixStack);
+    //Y轴旋转
+    GLKMatrixStackRotate(
+                         self.modelviewMatrixStack,
+                         GLKMathDegreesToRadians(eathRotationDegree),
+                         0.0, 1.0, 0.0);
+//    GLKMatrixStackRotate(
+//                         self.modelviewMatrixStack,
+//                         GLKMathDegreesToRadians(eathRotationDegree),
+//                         0.0, 1.0, 0.0);
+    
+//    GLKMatrixStackScale(
+//                        self.modelviewMatrixStack,
+//                        0.5,
+//                        0.5,
+//                        0.5);
+    
+    self.baseEffect.transform.modelviewMatrix =
+    GLKMatrixStackGetMatrix4(self.modelviewMatrixStack);
+    
     //绘制顶点
     [self.baseEffect prepareToDraw];
     [AGLKVertexAttribArrayBuffer
      drawPreparedArraysWithMode:GL_TRIANGLES
      startVertexIndex:0
-     numberOfVertices:EathVertexNumber/3];//EathVertexNumber sPerVertex * sPerVertex*6*3
+     numberOfVertices:EathVertexNumber/3];
     
+    //取出原先第二个球的矩阵给第二个球使用
+     GLKMatrixStackPop(self.modelviewMatrixStack);
+    self.baseEffect.transform.modelviewMatrix =
+    GLKMatrixStackGetMatrix4(self.modelviewMatrixStack);
+    eathRotationDegree = eathRotationDegree+1;
+}
+
+
+-(void)drawBallSecond
+{
+    self.baseEffect.texture2d0.name = self.secondTextureInfo.name;
+    self.baseEffect.texture2d0.target = self.secondTextureInfo.target;
     
+    static const GLfloat  SceneMoonRadiusFractionOfEarth = 0.4;//放小倍数
+    static GLfloat rotationDegree = 10;
+    GLKMatrixStackPush(self.modelviewMatrixStack);
+    //Y轴旋转
+        GLKMatrixStackRotate(
+                             self.modelviewMatrixStack,
+                             GLKMathDegreesToRadians(rotationDegree),
+                             0.0, 1.0, 0.0);
+    //Y轴平移
+    GLKMatrixStackTranslate(
+                            self.modelviewMatrixStack,
+                            0.0, -1.0, 0.0);
+    //地球的1/4倍
+    GLKMatrixStackScale(
+                        self.modelviewMatrixStack,
+                        SceneMoonRadiusFractionOfEarth,
+                        SceneMoonRadiusFractionOfEarth,
+                        SceneMoonRadiusFractionOfEarth);
+    
+    self.baseEffect.transform.modelviewMatrix =
+    GLKMatrixStackGetMatrix4(self.modelviewMatrixStack);
+    
+    [self.baseEffect prepareToDraw];
+    [AGLKVertexAttribArrayBuffer
+     drawPreparedArraysWithMode:GL_TRIANGLES
+     startVertexIndex:0
+     numberOfVertices:EathVertexNumber/3];
+    
+    GLKMatrixStackPop(self.modelviewMatrixStack);
+    
+    self.baseEffect.transform.modelviewMatrix =
+    GLKMatrixStackGetMatrix4(self.modelviewMatrixStack);
+    rotationDegree += 1;
+}
+//绘制第三个球
+-(void)drawBallThird
+{
+    self.baseEffect.texture2d0.name = self.thirdTextureInfo.name;
+    self.baseEffect.texture2d0.target = self.thirdTextureInfo.target;
+    static const GLfloat  SceneMoonRadiusFractionOfEarth = 0.4;//放小倍数
+    static GLfloat rotationDegree = 10;
+    GLKMatrixStackPush(self.modelviewMatrixStack);
+    //Y轴旋转
+    GLKMatrixStackRotate(
+                         self.modelviewMatrixStack,
+                         GLKMathDegreesToRadians(rotationDegree),
+                         0.0, 1.0, 0.0);
+    //Y轴平移--向上平移
+    GLKMatrixStackTranslate(
+                            self.modelviewMatrixStack,
+                            0.0, 1.0, 0.0);
+    //地球的1/4倍
+    GLKMatrixStackScale(
+                        self.modelviewMatrixStack,
+                        SceneMoonRadiusFractionOfEarth,
+                        SceneMoonRadiusFractionOfEarth,
+                        SceneMoonRadiusFractionOfEarth);
+    
+    self.baseEffect.transform.modelviewMatrix =
+    GLKMatrixStackGetMatrix4(self.modelviewMatrixStack);
+    
+    [self.baseEffect prepareToDraw];
+    [AGLKVertexAttribArrayBuffer
+     drawPreparedArraysWithMode:GL_TRIANGLES
+     startVertexIndex:0
+     numberOfVertices:EathVertexNumber/3];
+    
+    GLKMatrixStackPop(self.modelviewMatrixStack);
+    
+    self.baseEffect.transform.modelviewMatrix =
+    GLKMatrixStackGetMatrix4(self.modelviewMatrixStack);
+    rotationDegree += 1;
 }
 
 #pragma mark 其它
 //设置实际比例和视点
 -(void)setVisiblePort
 {
+    self.modelviewMatrixStack = GLKMatrixStackCreate(kCFAllocatorDefault);
     //正交投影
     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projecctionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(60.0),//透视投影上下间的夹角(视角)夹角看到的越大物体越小
@@ -122,9 +261,14 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
     self.baseEffect.transform.projectionMatrix = projecctionMatrix;
     
     //眼睛的位置最好是xyz都大于物体对应的方向的的最高点
-    self.baseEffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0, -4.3,-3.0,//眼睛的位置(z轴大于物体最高点以上)
+    self.baseEffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0.0, 0.0,4.0,//眼睛的位置(z轴大于物体最高点以上)
                                                                      0.0, 0.0, 0.0,//看向的位置(锥体的正中心)
                                                                      0.0, 1.0, 0.0);//头朝向Y轴正方向(标配)
+    
+    //矩阵堆
+    GLKMatrixStackLoadMatrix4(
+                              self.modelviewMatrixStack,
+                              self.baseEffect.transform.modelviewMatrix);
 
 }
 
@@ -153,8 +297,9 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
 }
 
 - (void)bufferData {
+    
+    
     [self genData];
-//    [self getTexVertex];
     //顶点数据缓存
     self.vertexBuffer = [[AGLKVertexAttribArrayBuffer alloc]
                          initWithAttribStride:(3 * sizeof(GLfloat))
@@ -179,7 +324,7 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
     //测试 改变视点
   CGFloat  angle = sender.value;
     //改变视点
-    self.baseEffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0.0+angle*6, angle*6, 3.8,//眼睛的位置(z轴大于物体最高点以上)
+    self.baseEffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(angle*12-6, angle*12-6, 3.8,//眼睛的位置(z轴大于物体最高点以上)
                                                                      0.0, 0.0, 0.0,//看向的位置(锥体的正中心)
                                                                      0.0, 1.0, 0.0);//头朝向Y轴正方向(标配);
     [self.baseEffect prepareToDraw];
@@ -188,7 +333,6 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
 
 
 //594 666 *6*3
-
 -(void)genData
 {
     int index = 0;
@@ -251,9 +395,6 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
  0--------1
  */
 
-
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -269,7 +410,9 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
  }
  */
 
-
+/*矩阵栈:
+ 把矩阵MatrixA放入栈中缓存，然后对矩阵进行操作，得到新的矩阵MatrixB；
+ 最后把矩阵出栈，可以得到原始矩阵MatrixA。*/
 
 
 @end
