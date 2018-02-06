@@ -49,6 +49,13 @@
                                     <segue destination="b48-Pa-H0r" kind="presentation" id="Ss8-io-NBb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2G-ba-Qr1">
+                                <rect key="frame" x="198" y="584" width="108" height="30"/>
+                                <state key="normal" title="第二种方式绘制"/>
+                                <connections>
+                                    <segue destination="YWT-rd-5cN" kind="presentation" id="2KG-56-Dsi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -56,10 +63,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bg2-xD-aPh" secondAttribute="bottom" constant="53" id="39O-G6-qEY"/>
                             <constraint firstItem="HXI-fu-ze3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="13" id="Cte-hU-aNM"/>
                             <constraint firstItem="xyk-QO-zlf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HoO-wg-Csj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="z2G-ba-Qr1" secondAttribute="bottom" constant="53" id="Mdc-3l-z7P"/>
                             <constraint firstItem="c2x-xd-7Wq" firstAttribute="height" secondItem="HXI-fu-ze3" secondAttribute="height" id="NGl-aV-c4a"/>
                             <constraint firstItem="xyk-QO-zlf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ndg-uN-Zre"/>
                             <constraint firstItem="HXI-fu-ze3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="Uz5-Xr-5tB"/>
                             <constraint firstItem="bg2-xD-aPh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="WZ7-dl-LXo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="z2G-ba-Qr1" secondAttribute="trailing" constant="69" id="WeV-fz-8bB"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bg2-xD-aPh" secondAttribute="trailing" constant="20" symbolic="YES" id="gRe-zd-TbC"/>
                             <constraint firstItem="c2x-xd-7Wq" firstAttribute="leading" secondItem="HXI-fu-ze3" secondAttribute="leading" id="hTx-Wv-o9n"/>
                             <constraint firstItem="2cA-4G-dOv" firstAttribute="top" secondItem="HXI-fu-ze3" secondAttribute="bottom" constant="38" id="oNQ-fF-MFd"/>
@@ -73,6 +82,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Second EathVC-->
+        <scene sceneID="HVa-5J-5UR">
+            <objects>
+                <viewController storyboardIdentifier="SecondEathVC" id="YWT-rd-5cN" customClass="SecondEathVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="clC-RJ-fAu" customClass="GLKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="ATw-TX-q5b"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5QI-3h-hKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="904"/>
         </scene>
         <!--EathVC-->
         <scene sceneID="C4C-DW-kWz">

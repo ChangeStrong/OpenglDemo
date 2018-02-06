@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		691A42372029822F0030A52B /* SecondEathVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 691A42362029822F0030A52B /* SecondEathVC.m */; };
 		692D2406202404D400E1E75B /* EathVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 692D2405202404D400E1E75B /* EathVC.m */; };
 		692D240920240EE900E1E75B /* BananaVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 692D240820240EE900E1E75B /* BananaVC.m */; };
 		69A4E8FF1FFC7B89001F2425 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A4E8FE1FFC7B89001F2425 /* AppDelegate.m */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		691A42352029822F0030A52B /* SecondEathVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondEathVC.h; sourceTree = "<group>"; };
+		691A42362029822F0030A52B /* SecondEathVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondEathVC.m; sourceTree = "<group>"; };
 		692D2404202404D400E1E75B /* EathVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EathVC.h; sourceTree = "<group>"; };
 		692D2405202404D400E1E75B /* EathVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EathVC.m; sourceTree = "<group>"; };
 		692D240720240EE900E1E75B /* BananaVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BananaVC.h; sourceTree = "<group>"; };
@@ -85,6 +88,8 @@
 				692D240820240EE900E1E75B /* BananaVC.m */,
 				692D2404202404D400E1E75B /* EathVC.h */,
 				692D2405202404D400E1E75B /* EathVC.m */,
+				691A42352029822F0030A52B /* SecondEathVC.h */,
+				691A42362029822F0030A52B /* SecondEathVC.m */,
 				69A4E8FD1FFC7B89001F2425 /* AppDelegate.h */,
 				69A4E8FE1FFC7B89001F2425 /* AppDelegate.m */,
 				69A4E9031FFC7B89001F2425 /* Main.storyboard */,
@@ -174,6 +179,7 @@
 				69A4E91F1FFC7D1F001F2425 /* AGLKContext.m in Sources */,
 				69A4E9281FFCA49D001F2425 /* AGLKVertexAttribArrayBuffer.m in Sources */,
 				69A4E90D1FFC7B89001F2425 /* main.m in Sources */,
+				691A42372029822F0030A52B /* SecondEathVC.m in Sources */,
 				69A4E8FF1FFC7B89001F2425 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
