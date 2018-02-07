@@ -53,7 +53,7 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
     
     //地球纹理 Earth512x256 banana
     CGImageRef earthImageRef =
-    [[UIImage imageNamed:@"miandui.jpg"] CGImage];
+    [[UIImage imageNamed:@"chedui.jpg"] CGImage];//chedui
     self.earthTextureInfo = [GLKTextureLoader
                              textureWithCGImage:earthImageRef
                              options:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -62,7 +62,7 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
                              error:NULL];
     
     CGImageRef secondImageRef =
-    [[UIImage imageNamed:@"1111.jpg"] CGImage];
+    [[UIImage imageNamed:@"manyebaye.jpg"] CGImage];
     self.secondTextureInfo = [GLKTextureLoader
                               textureWithCGImage:secondImageRef
                               options:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -133,7 +133,7 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
     self.baseEffect.texture2d0.name = self.earthTextureInfo.name;
     self.baseEffect.texture2d0.target = self.earthTextureInfo.target;
     
-    static  GLfloat  eathRotationDegree = 20.0f;
+    static  GLfloat  eathRotationDegree = 40.0f;
     
     GLKMatrixStackPush(self.modelviewMatrixStack);
     //Y轴旋转
@@ -166,7 +166,7 @@ static float eathTexVertex[EathTexCoordVertexNumber]={0};
      GLKMatrixStackPop(self.modelviewMatrixStack);
     self.baseEffect.transform.modelviewMatrix =
     GLKMatrixStackGetMatrix4(self.modelviewMatrixStack);
-    eathRotationDegree = eathRotationDegree+1;
+    eathRotationDegree = eathRotationDegree-1;
 }
 
 

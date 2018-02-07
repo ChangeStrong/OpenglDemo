@@ -39,7 +39,7 @@
 -(NSArray <NSString *> *)imageNames
 {
     if (!_imageNames) {
-        _imageNames = @[@"miandui.jpg",@"1111.jpg",@"susu.jpg",@"sisi.jpg",@"sisi.jpg",@"sisi.jpg"];
+        _imageNames = @[@"1.jpg",@"2.jpg",@"3.jpg",@"4.jpg",@"5.jpg",@"6.jpg"];
     }
     return _imageNames;
 }
@@ -210,6 +210,9 @@
     //剔除背面不可见多边形
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
+    
+//    glLineWidth(4)
+    
     
     //顶点缓存准备使用
     [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribPosition numberOfCoordinates:3 attribOffset:offsetof(SceneVertex, positioncoords) shouldEnable:YES];

@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:OpenglTest/OpenglTest.xcodeproj">
+      location = "group:/Users/luoluo/Documents/GitHub/OpenglDemo/OpenglTest/OpenglTest.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Light/Light.xcodeproj">
