@@ -16,40 +16,109 @@
     //四边形顶点对象
     SceneQuadrilateral quadrilaterals[6];
 //    SceneTriangle triangeles[12];
-    GLKTextureInfo *_textureInfo;
-     GLKTextureInfo *_textureInfo2;
+//    GLKTextureInfo *_textureInfo;
+//     GLKTextureInfo *_textureInfo2;
 }
 
 //使用此对象后台会自动生成Shanding Language
 @property(nonatomic, strong) GLKBaseEffect *baseeffect;
 @property(nonatomic, strong) AGLKVertexAttribArrayBuffer *vertexBuffer;
 
+@property (strong, nonatomic) GLKTextureInfo *firstTextureInfo;
+@property(nonatomic, strong) GLKTextureInfo *secondTextureInfo;
+@property(nonatomic, strong) GLKTextureInfo *thirdTextureInfo;
+@property(nonatomic, strong) GLKTextureInfo *forthTextureInfo;
+
+@property(nonatomic, strong) NSArray <NSString *> *imageNames;
+@property(nonatomic, strong) NSMutableArray <GLKTextureInfo *> *textureLoaders;
 @end
 
+
+
 @implementation CubeVC
+-(NSArray <NSString *> *)imageNames
+{
+    if (!_imageNames) {
+        _imageNames = @[@"miandui.jpg",@"1111.jpg",@"susu.jpg",@"sisi.jpg",@"sisi.jpg",@"sisi.jpg"];
+    }
+    return _imageNames;
+}
+
+-(NSMutableArray <GLKTextureInfo *> *)textureLoaders
+{
+    if (!_textureLoaders) {
+        _textureLoaders = [NSMutableArray new];
+        [self.imageNames enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            CGImageRef imageRef =
+            [[UIImage imageNamed:obj] CGImage];
+            GLKTextureInfo *loader = [GLKTextureLoader
+                                      textureWithCGImage:imageRef
+                                      options:[NSDictionary dictionaryWithObjectsAndKeys:
+                                               [NSNumber numberWithBool:YES],
+                                               GLKTextureLoaderOriginBottomLeft, nil]
+                                      error:NULL];
+            [_textureLoaders addObject:loader];
+            
+        }];
+    }
+    return _textureLoaders;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //上面
+    vertexA.textureCoords = GLKVector2Make(0.0, 0.0);
+    vertexB.textureCoords = GLKVector2Make(0.0, 1.0);
+    vertexC.textureCoords = GLKVector2Make(1.0, 1.0);
+    vertexD.textureCoords = GLKVector2Make(1.0, 0.0);
     SceneTriangle triangelOne = {vertexA,vertexB,vertexC};
     SceneTriangle triangelTwo = {vertexA,vertexC,vertexD};
     
     //下面
+    vertexE.textureCoords = GLKVector2Make(0.0, 0.0);
+    vertexF.textureCoords = GLKVector2Make(0.0, 1.0);
+    vertexG.textureCoords = GLKVector2Make(1.0, 1.0);
+    vertexH.textureCoords = GLKVector2Make(1.0, 0.0);
     SceneTriangle triangelThree = {vertexE,vertexG,vertexF};
     SceneTriangle triangelFour = {vertexE,vertexH,vertexG};
+    
+    
     //左
+    vertexH.textureCoords = GLKVector2Make(0.0, 0.0);
+    vertexE.textureCoords = GLKVector2Make(0.0, 1.0);
+    vertexA.textureCoords = GLKVector2Make(1.0, 1.0);
+    vertexD.textureCoords = GLKVector2Make(1.0, 0.0);
     SceneTriangle triangelFive = {vertexE,vertexD,vertexH};
     SceneTriangle triangelSix = {vertexE,vertexA,vertexD};
+    
+    
     //右
+    vertexF.textureCoords = GLKVector2Make(0.0, 0.0);
+    vertexG.textureCoords = GLKVector2Make(0.0, 1.0);
+    vertexC.textureCoords = GLKVector2Make(1.0, 1.0);
+    vertexB.textureCoords = GLKVector2Make(1.0, 0.0);
     SceneTriangle triangelSeven = {vertexF,vertexG,vertexC};
     SceneTriangle triangelEight = {vertexF,vertexC,vertexB};
+    
+    
     //前
+    vertexE.textureCoords = GLKVector2Make(0.0, 0.0);
+    vertexF.textureCoords = GLKVector2Make(0.0, 1.0);
+    vertexB.textureCoords = GLKVector2Make(1.0, 1.0);
+    vertexA.textureCoords = GLKVector2Make(1.0, 0.0);
     SceneTriangle triangelNine = {vertexE,vertexF,vertexB};
     SceneTriangle triangelTen = {vertexE,vertexB,vertexA};
+    
+    
     //后
+    vertexG.textureCoords = GLKVector2Make(0.0, 0.0);
+    vertexH.textureCoords = GLKVector2Make(0.0, 1.0);
+    vertexD.textureCoords = GLKVector2Make(1.0, 1.0);
+    vertexC.textureCoords = GLKVector2Make(1.0, 0.0);
     SceneTriangle triangelEleven = {vertexH,vertexC,vertexG};
     SceneTriangle triangelTwelve = {vertexH,vertexD,vertexC};
+    
     
     
 //    triangeles[0] =triangelOne;
@@ -97,62 +166,74 @@
     self.baseeffect.useConstantColor = GL_TRUE;
     self.baseeffect.constantColor = GLKVector4Make(1.0, 1.0f, 1.0f, 1.0f);
     //视域比例按手机比例
-     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projecctionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(60.0),//透视投影上下间的夹角(视角)夹角看到的越大物体越小
-                                                             aspect, 0.1f, 10.0f);
-    self.baseeffect.transform.projectionMatrix = projecctionMatrix;
-//    //X轴逆时针旋转60度
-//    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(-20.0f), 1.0f, 0.0f, 0.0f);
-//      //Y轴旋转
-//    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(30.0f), 0.0f, 1.0f, 0.0f);
-//    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, 0.6, 0.6, 0.8);
-//    self.baseeffect.transform.modelviewMatrix = modelViewMatrix;
-    //眼睛的位置最好是xyz都大于物体对应的方向的的最高点 
-    self.baseeffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0.0, -0.8, 2.8,//眼睛的位置(z轴大于物体最高点以上)
-                                                                         0.0, 0.0, 0.0,//看向的位置(锥体的正中心)
-                                                                         0.0, 1.0, 0.0);//头朝向Y轴正方向(标配)
-    NSLog(@"%lu",sizeof(cubeVertices)/sizeof(SceneVertex));
+    float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
+    self.baseeffect.transform.projectionMatrix =
+    GLKMatrix4MakeOrtho(
+                        -1.0 * aspect,
+                        1.0 * aspect,
+                        -1.0,
+                        1.0,
+                        -1.0,
+                        120.0);
+
     
-     self.vertexBuffer = [[AGLKVertexAttribArrayBuffer alloc]initWithAttribStride:sizeof(SceneVertex) numberOfVertices:sizeof(cubeVertices)/sizeof(SceneVertex) data:cubeVertices usage:GL_STATIC_DRAW];
     
-    CGImageRef imageRef = [UIImage imageNamed:@"test.png"].CGImage;
-   _textureInfo = [GLKTextureLoader textureWithCGImage:imageRef options:nil error:NULL];
-    CGImageRef imageRef2 = [UIImage imageNamed:@"timg.gif"].CGImage;
-    _textureInfo2 = [GLKTextureLoader textureWithCGImage:imageRef2 options:nil error:NULL];
-    //开启深度测试
-    glEnable(GL_DEPTH_TEST);
-    //剔除背面不可见多边形
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
+    //X轴逆时针旋转60度
+    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(-20.0f), 1.0f, 0.0f, 0.0f);
+      //Y轴旋转
+    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(30.0f), 0.0f, 1.0f, 0.0f);
+//    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, 0.0, -0.6, 0.0);
+    self.baseeffect.transform.modelviewMatrix = modelViewMatrix;
+    
+    //    GLKMatrix4 projecctionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(60.0),//透视投影上下间的夹角(视角)夹角看到的越大物体越小
+    //                                                             aspect, 0.1f, 10.0f);
+    //    self.baseeffect.transform.projectionMatrix = projecctionMatrix;
+    //眼睛的位置最好是xyz都大于物体对应的方向的的最高点
+//    self.baseeffect.transform.modelviewMatrix = GLKMatrix4MakeLookAt(0.0, -0.8, 2.8,//眼睛的位置(z轴大于物体最高点以上)
+//                                                                         0.0, 0.0, 0.0,//看向的位置(锥体的正中心)
+//                                                                         0.0, 1.0, 0.0);//头朝向Y轴正方向(标配)
+   
+    
+     self.vertexBuffer = [[AGLKVertexAttribArrayBuffer alloc]initWithAttribStride:sizeof(SceneVertex) numberOfVertices:sizeof(quadrilaterals)/sizeof(SceneVertex) data:quadrilaterals usage:GL_STATIC_DRAW];
+    
+    NSLog(@"%lu",sizeof(quadrilaterals)/sizeof(SceneVertex));
+    NSLog(@"offset:%lu",offsetof(SceneVertex, colorcoords));
+   
 }
 
 -(void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    [self.baseeffect prepareToDraw];
+    //开启深度测试
+    glEnable(GL_DEPTH_TEST);
     //清理背景色
     [((AGLKContext *)view.context) clear:GL_COLOR_BUFFER_BIT];
-    NSLog(@"offset:%lu",offsetof(SceneVertex, positioncoords));
+    //剔除背面不可见多边形
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    
     //顶点缓存准备使用
     [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribPosition numberOfCoordinates:3 attribOffset:offsetof(SceneVertex, positioncoords) shouldEnable:YES];
     [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribColor numberOfCoordinates:3 attribOffset:offsetof(SceneVertex, colorcoords) shouldEnable:YES];
+     [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribTexCoord0 numberOfCoordinates:2 attribOffset:offsetof(SceneVertex, textureCoords) shouldEnable:YES];
     
-    //配置纹理和使纹理生效
-//    [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribTexCoord0 numberOfCoordinates:2 attribOffset:offsetof(SceneVertex, textureCoords) shouldEnable:YES];
-//
-//
-//    self.baseeffect.texture2d0.name = _textureInfo.name;
-//    self.baseeffect.texture2d0.target = _textureInfo.target;
-//    [self.baseeffect prepareToDraw];
-//
-//    //开始绘制多个三角形
-//    [self.vertexBuffer drawArrayWithMode:GL_TRIANGLES startVertexIndex:0 numberOfVertices:4];
-//    self.baseeffect.texture2d0.name = _textureInfo2.name;
-//    self.baseeffect.texture2d0.target = _textureInfo2.target;
-//    [self.baseeffect prepareToDraw];
+   
+    if (self.imageNames.count > 6) {
+        NSLog(@"error:图片过多");
+        return;
+    }
     
-    [self.vertexBuffer drawArrayWithMode:GL_TRIANGLES startVertexIndex:0 numberOfVertices:sizeof(cubeVertices)/sizeof(SceneVertex)];
+    for (int i = 0; i<self.imageNames.count; i++) {
+        GLKTextureInfo *textureInfo = self.textureLoaders[i];
+        self.baseeffect.texture2d0.name = textureInfo.name;
+        self.baseeffect.texture2d0.target = textureInfo.target;
+        [self.baseeffect prepareToDraw];
+        [self.vertexBuffer drawArrayWithMode:GL_TRIANGLES startVertexIndex:6*i numberOfVertices:6];
+    }
     
 }
+
+
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -174,6 +255,8 @@
      i++;
      //    end
 }
+
+
 
 /*
 #pragma mark - Navigation

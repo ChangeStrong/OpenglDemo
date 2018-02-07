@@ -25,6 +25,11 @@
 		693D30E21FCE43DE003F97D1 /* TriangleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D30E11FCE43DE003F97D1 /* TriangleVC.m */; };
 		693D30E61FCE4580003F97D1 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 693D30E51FCE4580003F97D1 /* Shader.vsh */; };
 		693D30E81FCE45CC003F97D1 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 693D30E71FCE45CC003F97D1 /* Shader.fsh */; };
+		695110C8202A97FE00B110AD /* susu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 695110C3202A97FD00B110AD /* susu.jpg */; };
+		695110C9202A97FE00B110AD /* sisi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 695110C4202A97FD00B110AD /* sisi.jpg */; };
+		695110CA202A97FE00B110AD /* Earth512x256.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 695110C5202A97FE00B110AD /* Earth512x256.jpg */; };
+		695110CB202A97FE00B110AD /* 1111.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 695110C6202A97FE00B110AD /* 1111.jpg */; };
+		695110CC202A97FE00B110AD /* miandui.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 695110C7202A97FE00B110AD /* miandui.jpg */; };
 		69C062711FE9F2DD00ABBEEF /* timg.gif in Resources */ = {isa = PBXBuildFile; fileRef = 69C062701FE9F2DD00ABBEEF /* timg.gif */; };
 		69C064ED1FEA60E200ABBEEF /* AGLKTextureInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C064EC1FEA60E200ABBEEF /* AGLKTextureInfo.m */; };
 /* End PBXBuildFile section */
@@ -60,6 +65,11 @@
 		693D30E11FCE43DE003F97D1 /* TriangleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TriangleVC.m; sourceTree = "<group>"; };
 		693D30E51FCE4580003F97D1 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		693D30E71FCE45CC003F97D1 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		695110C3202A97FD00B110AD /* susu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = susu.jpg; path = ../../Earth/Earth/susu.jpg; sourceTree = "<group>"; };
+		695110C4202A97FD00B110AD /* sisi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sisi.jpg; path = ../../Earth/Earth/sisi.jpg; sourceTree = "<group>"; };
+		695110C5202A97FE00B110AD /* Earth512x256.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Earth512x256.jpg; path = ../../Earth/Earth/Earth512x256.jpg; sourceTree = "<group>"; };
+		695110C6202A97FE00B110AD /* 1111.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1111.jpg; path = ../../Earth/Earth/1111.jpg; sourceTree = "<group>"; };
+		695110C7202A97FE00B110AD /* miandui.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = miandui.jpg; path = ../../Earth/Earth/miandui.jpg; sourceTree = "<group>"; };
 		69C062701FE9F2DD00ABBEEF /* timg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = timg.gif; sourceTree = "<group>"; };
 		69C064EB1FEA60E200ABBEEF /* AGLKTextureInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGLKTextureInfo.h; sourceTree = "<group>"; };
 		69C064EC1FEA60E200ABBEEF /* AGLKTextureInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGLKTextureInfo.m; sourceTree = "<group>"; };
@@ -127,6 +137,11 @@
 		693D30C81FCE4309003F97D1 /* OpenglTest */ = {
 			isa = PBXGroup;
 			children = (
+				695110C6202A97FE00B110AD /* 1111.jpg */,
+				695110C5202A97FE00B110AD /* Earth512x256.jpg */,
+				695110C7202A97FE00B110AD /* miandui.jpg */,
+				695110C4202A97FD00B110AD /* sisi.jpg */,
+				695110C3202A97FD00B110AD /* susu.jpg */,
 				693035311FE9221900DA6E3F /* test.png */,
 				69C062701FE9F2DD00ABBEEF /* timg.gif */,
 				693035241FE90A7500DA6E3F /* Custom */,
@@ -226,9 +241,14 @@
 				693D30D61FCE4309003F97D1 /* LaunchScreen.storyboard in Resources */,
 				693D30D31FCE4309003F97D1 /* Assets.xcassets in Resources */,
 				693D30D11FCE4309003F97D1 /* Main.storyboard in Resources */,
+				695110C9202A97FE00B110AD /* sisi.jpg in Resources */,
+				695110CC202A97FE00B110AD /* miandui.jpg in Resources */,
 				69C062711FE9F2DD00ABBEEF /* timg.gif in Resources */,
+				695110CB202A97FE00B110AD /* 1111.jpg in Resources */,
 				693D30E81FCE45CC003F97D1 /* Shader.fsh in Resources */,
 				693035321FE9221900DA6E3F /* test.png in Resources */,
+				695110CA202A97FE00B110AD /* Earth512x256.jpg in Resources */,
+				695110C8202A97FE00B110AD /* susu.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

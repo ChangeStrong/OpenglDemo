@@ -31,17 +31,17 @@ SceneTriangle SceneTriangleMake(SceneVertex vertexA,SceneVertex vertexB,SceneVer
 //设置一个四边形
 SceneQuadrilateral SceneQuadrilaterMake(SceneTriangle one,SceneTriangle two);
 
-static const SceneVertex vertexA = {{-0.5, -0.5, 0.5},{0.0,1.0},{1.0,0.0,0.0}};
-static const SceneVertex vertexB = {{0.5, -0.5, 0.5},{1.0,1.0},{0.0,1.0,0.0}};
+static SceneVertex vertexA = {{-0.5, -0.5, 0.5},{0.0,1.0},{1.0,1.0,1.0}};
+static  SceneVertex vertexB = {{0.5, -0.5, 0.5},{1.0,1.0},{1.0,1.0,1.0}};
 
-static const SceneVertex vertexC = {{0.5, 0.5, 0.5},{1.0,1.0},{0.0,0.0,1.0}};
-static const SceneVertex vertexD = {{-0.5, 0.5, 0.5},{0.0,0.0},{1.0,0.0,0.0}};
+static  SceneVertex vertexC = {{0.5, 0.5, 0.5},{1.0,1.0},{1.0,1.0,1.0}};
+static  SceneVertex vertexD = {{-0.5, 0.5, 0.5},{0.0,0.0},{1.0,1.0,1.0}};
 
-static const SceneVertex vertexE = {{-0.5, -0.5, -0.5},{0.0,1.0},{0.0,1.0,0.0}};
-static const SceneVertex vertexF = {{0.5, -0.5, -0.5},{1.0,1.0},{0.0,0.0,1.0}};
+static  SceneVertex vertexE = {{-0.5, -0.5, -0.5},{0.0,1.0},{1.0,1.0,1.0}};
+static  SceneVertex vertexF = {{0.5, -0.5, -0.5},{1.0,1.0},{1.0,1.0,1.0}};
 
-static const SceneVertex vertexG = {{0.5, 0.5, -0.5},{1.0,0.0},{1.0,0.0,0.0}};
-static const SceneVertex vertexH = {{-0.5, 0.5, -0.5},{0.0,0.0},{1.0,1.0,1.0}};
+static  SceneVertex vertexG = {{0.5, 0.5, -0.5},{1.0,0.0},{1.0,1.0,1.0}};
+static  SceneVertex vertexH = {{-0.5, 0.5, -0.5},{0.0,0.0},{1.0,1.0,1.0}};
 
 static const SceneVertex cubeVertices[] = {
     //上-红
