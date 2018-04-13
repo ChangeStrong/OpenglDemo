@@ -89,11 +89,15 @@ enum AttribType
     //生成帧缓存和渲染缓存 绑定渲染缓存到帧缓存
     glGenFramebuffers(1, &_framebuffer);
     glGenRenderbuffers(1, &_renderbuffer);
+    //绑定帧buff到渲染管线上
     glBindFramebuffer(GL_FRAMEBUFFER, _framebuffer);
+    //将渲染buff放到渲染管线上
     glBindRenderbuffer(GL_RENDERBUFFER, _renderbuffer);
+    //将渲染buff的缓存设为layer的
     [_glContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:(CAEAGLLayer*)self.layer];
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &_backingWidth);
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &_backingHeight);
+    //将渲染buff绑定在帧buff上
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _renderbuffer);
     
     //加载着色器到program
@@ -165,6 +169,7 @@ enum AttribType
 //更新顶点的值
 - (void)updateVertices
 {
+    
     const BOOL fit      =  YES;//(self.contentMode == UIViewContentModeScaleAspectFit);
     const float width   = _imageWidth;
     const float height  = _imageHeight;
@@ -208,7 +213,7 @@ enum AttribType
     GLuint tex1;
     glActiveTexture(GL_TEXTURE0);
     glGenTextures(1, &tex1);//生成一个纹理缓存  也可以直接传入3 三个容量的标识数组
-    glBindTexture(GL_TEXTURE_2D,  tex1);
+    glBindTexture(GL_TEXTURE_2D,  tex1);//绑定后表示接下来放入的纹理是输入tex1的
     
     
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA , self.imageWidth, self.imageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, _imageData);
@@ -288,7 +293,7 @@ static void mat4f_LoadOrtho(float left, float right, float bottom, float top, fl
      [_glContext presentRenderbuffer:GL_RENDERBUFFER];
 }
 
-
+//Program渲染的目标是帧缓存
 
 
 @end

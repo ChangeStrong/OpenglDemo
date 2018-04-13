@@ -12,7 +12,7 @@
 //(一)
 -(instancetype)init{
     if (self = [super init]){
-        // 创建一个程序
+        // 创建一个显卡程序
         self.program = glCreateProgram();
     }
     return self;
