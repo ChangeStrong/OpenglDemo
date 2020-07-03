@@ -97,6 +97,8 @@ enum AttribType
     [_glContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:(CAEAGLLayer*)self.layer];
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &_backingWidth);
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &_backingHeight);
+    
+    //最后将所有buff都挂机到桢buff上
     //将渲染buff绑定在帧buff上
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _renderbuffer);
     
@@ -229,9 +231,10 @@ enum AttribType
     mat4f_LoadOrtho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f, modelviewProj);
     //设置投影矩阵 将上下颠倒的画面纠正
     glUniformMatrix4fv(_modelViewProjectAttriAddress, 1, GL_FALSE, modelviewProj);
-    
+    //根据之前绑定属性到shader的位置 给这个位置赋值
     glVertexAttribPointer(AttribTypeVertexPosition, 2, GL_FLOAT, 0, 0, _vertices);
     glEnableVertexAttribArray(AttribTypeVertexPosition);
+    
     glVertexAttribPointer(AttribTypeVertexTextureCoord, 2, GL_FLOAT, 0, 0, texCoords);
     glEnableVertexAttribArray(AttribTypeVertexTextureCoord);
     
