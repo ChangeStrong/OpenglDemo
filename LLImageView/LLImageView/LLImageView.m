@@ -229,8 +229,9 @@ enum AttribType
     mat4f_LoadOrtho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f, modelviewProj);
     //设置投影矩阵 将上下颠倒的画面纠正
     glUniformMatrix4fv(_modelViewProjectAttriAddress, 1, GL_FALSE, modelviewProj);
-    
+    //将我们的vertices数组的地址赋值给vertex shader中的position属性.
     glVertexAttribPointer(AttribTypeVertexPosition, 2, GL_FLOAT, 0, 0, _vertices);
+    //根据变量的位置AttribTypeVertexPosition启动a_Position这个变量
     glEnableVertexAttribArray(AttribTypeVertexPosition);
     glVertexAttribPointer(AttribTypeVertexTextureCoord, 2, GL_FLOAT, 0, 0, texCoords);
     glEnableVertexAttribArray(AttribTypeVertexTextureCoord);

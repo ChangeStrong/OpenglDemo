@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 
-//定义顶点结构体 (也可以存入其它额外信息)
+//定义顶点结构体
 typedef struct {
-    //内部再放一个顶点结构体
+    //顶点向量坐标
     GLKVector3 positioncoords;
+    //纹理坐标
     GLKVector2 textureCoords;
+    //颜色坐标
     GLKVector3 colorcoords;
 }SceneVertex;
 
