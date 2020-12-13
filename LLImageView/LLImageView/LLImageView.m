@@ -97,6 +97,8 @@ enum AttribType
     [_glContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:(CAEAGLLayer*)self.layer];
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &_backingWidth);
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &_backingHeight);
+    
+    //最后将所有buff都挂机到桢buff上
     //将渲染buff绑定在帧buff上
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _renderbuffer);
     
@@ -233,6 +235,7 @@ enum AttribType
     glVertexAttribPointer(AttribTypeVertexPosition, 2, GL_FLOAT, 0, 0, _vertices);
     //根据变量的位置AttribTypeVertexPosition启动a_Position这个变量
     glEnableVertexAttribArray(AttribTypeVertexPosition);
+    
     glVertexAttribPointer(AttribTypeVertexTextureCoord, 2, GL_FLOAT, 0, 0, texCoords);
     glEnableVertexAttribArray(AttribTypeVertexTextureCoord);
     
