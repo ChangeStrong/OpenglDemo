@@ -93,6 +93,7 @@ OpenGL ES － y轴向上
     memset(imageData, 0,imageWidth *imageHeight*4);
     CGColorSpaceRef colorspace = CGImageGetColorSpace(imageRef);
     _colorSpace = CGColorSpaceRetain(colorspace);
+   
     CGContextRef imageContextRef = CGBitmapContextCreate(imageData, imageWidth, imageHeight, 8, imageWidth*4, _colorSpace, kCGImageAlphaPremultipliedLast);
     //将uikit中的图片颠倒 方法一
 //    CGContextTranslateCTM(imageContextRef, imageWidth, imageHeight);
